@@ -27,12 +27,16 @@ model Category{
   id String @id @default(uuid())
   name String
   dishes Dish[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 model Ingredient{
   id String @id @default(uuid())
   name String
   dishes Dish[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 model Dish {
