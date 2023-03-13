@@ -3,8 +3,8 @@ import { AuthController } from "../controller/authController";
 
 
 const authRoutes = Router();
+const authController = new AuthController();
 
-authRoutes.post("/signin", AuthController.signin);
-authRoutes.post("/signup", AuthController.signup);
+authRoutes.post("/signup", (request, response) => authController.signup(request, response));
 
-module.exports = authRoutes;
+export = authRoutes;
