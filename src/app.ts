@@ -1,7 +1,9 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import express from "express";
 import authRoutes from "./routes/auth.routes";
-//import { ErrorHandler } from "./middlewares/errorHandler";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const AppError = require("./utils/appError");
 
@@ -10,7 +12,6 @@ const AppError = require("./utils/appError");
 const app = express();
 app.use(express.json());
 app.use(authRoutes);
-//app.use(ErrorHandler.handle);
 
 app.use((error: Error, request: Request, response: Response, next: NextFunction) => {
     console.log(error);
@@ -28,6 +29,6 @@ app.use((error: Error, request: Request, response: Response, next: NextFunction)
     })
 });
 
-app.listen(3333, () => {
-    console.log("Server is running on Port 3333");
-})
+const PORT = process.env.PORT || 3333;
+app.listen(PORT, () => console.log(`
+Server is running on Port ${PORT}`));
